@@ -1,7 +1,7 @@
 const bodyParser = require("body-parser");
 const express = require("express");
-
-const eventRoutes = require("./routes/events");
+const path = require("path");
+const eventRoutes = require("./routes/api");
 const authRoutes = require("./routes/auth");
 
 const app = express();
@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 
 app.use(authRoutes);
 
-app.use("/events", eventRoutes);
+app.use("/api", eventRoutes);
 
 app.use((error, req, res, next) => {
   const status = error.status || 500;
@@ -24,6 +24,12 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message });
 });
 
-app.listen(8080);
+app.use(express.static(path.join(__dirname, "build")));
 
-console.log("listening for 8080");
+// app.get("/*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
+
+app.listen(80);
+
+console.log("listening for 80");

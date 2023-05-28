@@ -95,11 +95,11 @@ export async function action({ request, params }) {
     description: data.get("description"),
   };
 
-  let url = "http://localhost:80/api";
+  let url = "/api";
 
   if (method === "PATCH") {
     const eventId = params.eventId;
-    url = "http://localhost:80/api/" + eventId;
+    url = "/api/" + eventId;
   }
 
   const token = getAuthToken();

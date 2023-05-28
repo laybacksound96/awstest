@@ -18,7 +18,7 @@ function EventsPage() {
 export default EventsPage;
 
 async function loadEvents() {
-  const response = await fetch("http://localhost:80/api");
+  const response = await fetch("/api");
 
   if (!response.ok) {
     throw json(

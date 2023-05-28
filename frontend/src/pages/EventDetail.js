@@ -33,7 +33,7 @@ function EventDetailPage() {
 export default EventDetailPage;
 
 async function loadEvent(id) {
-  const response = await fetch("http://localhost:80/api/" + id);
+  const response = await fetch("/api/" + id);
 
   if (!response.ok) {
     throw json(
@@ -49,7 +49,7 @@ async function loadEvent(id) {
 }
 
 async function loadEvents() {
-  const response = await fetch("http://localhost:80/api");
+  const response = await fetch("/api");
 
   if (!response.ok) {
     throw json(
@@ -76,7 +76,7 @@ export async function loader({ request, params }) {
 export async function action({ params, request }) {
   const eventId = params.eventId;
   const token = getAuthToken();
-  const response = await fetch("http://localhost:80/api/" + eventId, {
+  const response = await fetch("/api/" + eventId, {
     method: request.method,
     headers: {
       "Content-Type": "application/json",
